@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,25 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Authentication routes
+
+// Admin Dashboard
+
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+});
+
+// Vendor Dashboard 
+
+Route::middleware(['auth', 'role:vendor'])->group(function() {
+    Route::get('/vendor/dashboard', [VendorController::class, 'dashboard'])->name('vendor.dashboard');
+});
+
+// No Authentication
+
+// Admin Dashboard
+
+Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');

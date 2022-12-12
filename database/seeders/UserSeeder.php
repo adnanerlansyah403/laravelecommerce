@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'username' => 'vendor',
                 'email' => 'vendor@example.com',
                 'password' => Hash::make('111'),
-                'role' => 'admin',
+                'role' => 'vendor',
                 'status' => 'active',    
             ],
             [
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
                 'username' => 'user',
                 'email' => 'user@example.com',
                 'password' => Hash::make('111'),
-                'role' => 'admin',
+                'role' => 'user',
                 'status' => 'active',
             ]
         ]);
